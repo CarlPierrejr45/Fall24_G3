@@ -1,0 +1,127 @@
+Html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room8</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Room8</h1>
+        <div id="profile-card" class="card">
+            <img id="profile-pic" src="profile1.jpg" alt="Student Profile Picture">
+            <h2 id="profile-name">Student Name</h2>
+            <p id="profile-info">Information about the student</p>
+            <div class="buttons">
+                <button id="dislike-btn">Dislike</button>
+                <button id="like-btn">Like</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+css:
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button#dislike-btn {
+    background-color: #FF4C4C;
+}
+
+button#dislike-btn:hover {
+    background-color: #b30000;
+}
+Javascript:
+const profiles = [
+    {
+        name: "Student A",
+        info: "Major: Computer Science, Loves programming and open-source projects.",
+        img: "profile1.jpg"
+    },
+    {
+        name: "Student B",
+        info: "Major: Biology, Interested in environmental science.",
+        img: "profile2.jpg"
+    },
+    {
+        name: "Student C",
+        info: "Major: Business, Aspiring entrepreneur.",
+        img: "profile3.jpg"
+    }
+];
+
+let currentIndex = 0;
+
+function updateProfile() {
+    const profile = profiles[currentIndex];
+    document.getElementById('profile-name').textContent = profile.name;
+    document.getElementById('profile-info').textContent = profile.info;
+    document.getElementById('profile-pic').src = profile.img;
+}
+
+document.getElementById('like-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % profiles.length;
+    updateProfile();
+});
+
+document.getElementById('dislike-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % profiles.length;
+    updateProfile();
+});
+
+// Initial profile load
+updateProfile();
